@@ -84,17 +84,46 @@ class DoublyLinkedList{
   };
 
   insert(index, val){// insert at any index
-    
+    if(index === 0 ){
+      this.unshift(val);
+    }else if(index === this.length-1){
+      this.push(val);
+    }else{
+      let newNode = new Node(val);
+      let currentNode = this.head.next;
+      let prevNode = this.head;
+      for(let i =0 ; i<index-1; i++){
+        currentNode = currentNode.next;
+        prevNode = prevNode.next;
+      }
+      prevNode.next = newNode;
+      newNode.prev = prevNode;
+      newNode.next = currentNode;
+      currentNode.prev = newNode;
+      this.length++;
+    }
+    return this
   }
 
   remove(index){// remove value at any index
-    
+    if(index === 0 ){
+      this.shift();
+    }else if(index === this.length-1){
+      this.pop();
+    }else{
+      let currentNode = this.head.next;
+      let prevNode = this.head;
+      for(let i =0 ; i<index-1; i++){
+        currentNode = currentNode.next;
+        prevNode = prevNode.next;
+      }
+      prevNode.next = currentNode.next;
+      currentNode.prev = prevNode;
+      this.length--;
+    }
+    return this
   }
   
-  reverse(){// reverse the LL
-    
-  }
-
 }
 
 const doublyLinkedList = new DoublyLinkedList();
@@ -103,9 +132,6 @@ doublyLinkedList.push(2);
 doublyLinkedList.push(3);
 doublyLinkedList.push(56);
 doublyLinkedList.unshift(99);
-doublyLinkedList.shift();
-doublyLinkedList.shift();
-doublyLinkedList.pop();
-doublyLinkedList.pop();
-doublyLinkedList.pop();
+doublyLinkedList.insert(1, 100);
+doublyLinkedList.remove(2);
 console.log(doublyLinkedList.print());

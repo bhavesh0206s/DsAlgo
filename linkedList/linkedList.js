@@ -119,14 +119,14 @@ class LinkedList{
 
 let linkedList = new LinkedList();
 linkedList.push(2);
-// linkedList.push(4);
-// linkedList.push(3);
-// linkedList.push(5);
-// linkedList.push(6);
-// linkedList.unshift(7);
-// linkedList.shift(7);
-// linkedList.insert(0,10);
-// linkedList.remove(2);
+linkedList.push(4);
+linkedList.push(3);
+linkedList.push(5);
+linkedList.push(6);
+linkedList.unshift(7);
+linkedList.shift(7);
+linkedList.insert(0,10);
+linkedList.remove(2);
 console.log('original: ',linkedList.print());
-// linkedList.reverse();
+linkedList.reverse();
 console.log('reversed: ',linkedList.print());
