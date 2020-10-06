@@ -38,23 +38,25 @@ class BST{
       }
     }
   }
-  
-    breathFirstSearch(){
-    let current = this.root;
-    let queue = [current];
-    let visited = [];
-    while(queue.length !== 0){
-      current = queue.shift()
-      visited.push(current)
-      if(current.left){
-        queue.push(current.left)
+  find(val){
+    if(this.root.value === val) return this.root;
+    else{
+      let current = this.root;
+      let found = false;
+      while(current && !found){
+        if(val < current.value){
+          current = current.left;
+        }else if(val > current.value){
+          current = current.right;
+        }else{
+          found = true
+        }
       }
-      if(current.right){
-        queue.push(current.right)
-      }
+      if(!found) return undefined;
+      return current
     }
-    return visited
   }
+
 }
 
 let binarySearchTree = new BST();
@@ -62,5 +64,5 @@ binarySearchTree.insert(10);
 binarySearchTree.insert(5);
 binarySearchTree.insert(13);
 binarySearchTree.insert(7);
-binarySearchTree.insert(2);
-console.log(binarySearchTree.breathFirstSearch());
+console.log(binarySearchTree.insert(2));
+console.log(binarySearchTree.find(10));
