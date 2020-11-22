@@ -42,6 +42,46 @@ class Graph{
     })(start);
     return result
   }
+
+  depthFirstIterative(start){
+    const stack = [start];
+    const result = [];
+    const visited = {};
+
+    visited[start] = true;
+
+    let currentVertex;
+    while (stack.length){
+      currentVertex = stack.pop();
+      result.push(currentVertex)
+      this.adjacencyList[currentVertex].forEach(neighbor => {
+        if(!visited[neighbor]){
+          visited[neighbor] = true;
+          stack.push(neighbor);
+        }
+      })
+    }
+    return result
+  }
+
+  breathFirst(start){
+    const queue = [start];
+    const result = [];
+    const visited = [];
+    visited[start] = true;
+    let currentVertex;
+    while(queue.length){
+      currentVertex = queue.shift();
+      result.push(currentVertex)
+      this.adjacencyList[currentVertex].forEach(neighbor =>{
+        if(!visited[neighbor]){
+          queue.push(neighbor);
+          visited[neighbor] = true;
+        }
+      })
+    }
+    return result;
+  }
 }
 
 let g = new Graph();
@@ -62,4 +102,6 @@ g.addEdge("D","E")
 g.addEdge("D","F")
 g.addEdge("E","F")
 console.log(g);
-g.depthFirstRecursive("A")
+g.depthFirstRecursive("A");
+console.log(g.depthFirstIterative("A"))
+console.log(g.breathFirst("A"))
